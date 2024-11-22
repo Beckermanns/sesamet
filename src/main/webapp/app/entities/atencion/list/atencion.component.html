@@ -1,0 +1,157 @@
+<div>
+  <h2 id="page-heading" data-cy="AtencionHeading">
+    <span jhiTranslate="sesametApp.atencion.home.title">Atencions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="sesametApp.atencion.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-atencion"
+        [routerLink]="['/atencion/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="sesametApp.atencion.home.createLabel">Crear nuevo Atencion</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (atencions?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="sesametApp.atencion.home.notFound">Ningún Atencions encontrado</span>
+    </div>
+  }
+
+  @if (atencions && atencions.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fecha">
+              <div class="d-flex">
+                <span jhiTranslate="sesametApp.atencion.fecha">Fecha</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="hora">
+              <div class="d-flex">
+                <span jhiTranslate="sesametApp.atencion.hora">Hora</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="motivo_consulta">
+              <div class="d-flex">
+                <span jhiTranslate="sesametApp.atencion.motivo_consulta">Motivo Consulta</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="diagnostico">
+              <div class="d-flex">
+                <span jhiTranslate="sesametApp.atencion.diagnostico">Diagnostico</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tratamiento">
+              <div class="d-flex">
+                <span jhiTranslate="sesametApp.atencion.tratamiento">Tratamiento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="centroMedico.centro">
+              <div class="d-flex">
+                <span jhiTranslate="sesametApp.atencion.centroMedico">Centro Medico</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="doctor.rut_doctor">
+              <div class="d-flex">
+                <span jhiTranslate="sesametApp.atencion.doctor">Doctor</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="paciente.rut_paciente">
+              <div class="d-flex">
+                <span jhiTranslate="sesametApp.atencion.paciente">Paciente</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (atencion of atencions; track trackId(atencion)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/atencion', atencion.id, 'view']">{{ atencion.id }}</a>
+              </td>
+              <td>{{ atencion.fecha | formatMediumDate }}</td>
+              <td>{{ atencion.hora }}</td>
+              <td>{{ atencion.motivo_consulta }}</td>
+              <td>{{ atencion.diagnostico }}</td>
+              <td>{{ atencion.tratamiento }}</td>
+              <td>
+                @if (atencion.centroMedico) {
+                  <div>
+                    <a [routerLink]="['/centro-medico', atencion.centroMedico.id, 'view']">{{ atencion.centroMedico.centro }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (atencion.doctor) {
+                  <div>
+                    <a [routerLink]="['/doctor', atencion.doctor.id, 'view']">{{ atencion.doctor.rut_doctor }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (atencion.paciente) {
+                  <div>
+                    <a [routerLink]="['/paciente', atencion.paciente.id, 'view']">{{ atencion.paciente.rut_paciente }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/atencion', atencion.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/atencion', atencion.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(atencion)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

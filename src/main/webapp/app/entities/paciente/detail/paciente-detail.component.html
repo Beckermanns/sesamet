@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (paciente(); as pacienteRef) {
+      <div>
+        <h2 data-cy="pacienteDetailsHeading"><span jhiTranslate="sesametApp.paciente.detail.title">Paciente</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ pacienteRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.paciente.rut_paciente">Rut Paciente</span></dt>
+          <dd>
+            <span>{{ pacienteRef.rut_paciente }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.paciente.nombres">Nombres</span></dt>
+          <dd>
+            <span>{{ pacienteRef.nombres }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.paciente.apellido_paterno">Apellido Paterno</span></dt>
+          <dd>
+            <span>{{ pacienteRef.apellido_paterno }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.paciente.apellido_materno">Apellido Materno</span></dt>
+          <dd>
+            <span>{{ pacienteRef.apellido_materno }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.paciente.telefono">Telefono</span></dt>
+          <dd>
+            <span>{{ pacienteRef.telefono }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.paciente.correo">Correo</span></dt>
+          <dd>
+            <span>{{ pacienteRef.correo }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.paciente.direccion">Direccion</span></dt>
+          <dd>
+            <span>{{ pacienteRef.direccion }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.paciente.comuna">Comuna</span></dt>
+          <dd>
+            <span>{{ pacienteRef.comuna }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/paciente', pacienteRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

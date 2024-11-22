@@ -1,0 +1,31 @@
+{
+  "sesametApp": {
+    "atencion": {
+      "home": {
+        "title": "Atencions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Atencion",
+        "createOrEditLabel": "Crear o editar Atencion",
+        "notFound": "Ningún Atencions encontrado"
+      },
+      "created": "Un nuevo Atencion ha sido creado con el identificador {{ param }}",
+      "updated": "Un Atencion ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Atencion ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Atencion {{ id }}?"
+      },
+      "detail": {
+        "title": "Atencion"
+      },
+      "id": "ID",
+      "fecha": "Fecha",
+      "hora": "Hora",
+      "motivo_consulta": "Motivo Consulta",
+      "diagnostico": "Diagnostico",
+      "tratamiento": "Tratamiento",
+      "centroMedico": "Centro Medico",
+      "doctor": "Doctor",
+      "paciente": "Paciente"
+    }
+  }
+}

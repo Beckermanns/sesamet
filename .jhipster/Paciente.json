@@ -1,0 +1,47 @@
+{
+  "annotations": {
+    "changelogDate": "20241121034504"
+  },
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "rut_paciente",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombres",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apellido_paterno",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apellido_materno",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefono",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "correo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "comuna",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Paciente",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

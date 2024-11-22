@@ -1,0 +1,63 @@
+{
+  "annotations": {
+    "changelogDate": "20241121042207"
+  },
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "fecha",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "hora",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "motivo_consulta",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "diagnostico",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tratamiento",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Atencion",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "centro",
+      "otherEntityName": "centroMedico",
+      "otherEntityRelationshipName": "atencion",
+      "relationshipName": "centroMedico",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    },
+    {
+      "otherEntityField": "rut_doctor",
+      "otherEntityName": "doctor",
+      "otherEntityRelationshipName": "atencion",
+      "relationshipName": "doctor",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    },
+    {
+      "otherEntityField": "rut_paciente",
+      "otherEntityName": "paciente",
+      "otherEntityRelationshipName": "atencion",
+      "relationshipName": "paciente",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"]
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

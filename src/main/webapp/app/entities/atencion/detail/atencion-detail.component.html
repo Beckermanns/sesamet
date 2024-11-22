@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (atencion(); as atencionRef) {
+      <div>
+        <h2 data-cy="atencionDetailsHeading"><span jhiTranslate="sesametApp.atencion.detail.title">Atencion</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ atencionRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.atencion.fecha">Fecha</span></dt>
+          <dd>
+            <span>{{ atencionRef.fecha | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.atencion.hora">Hora</span></dt>
+          <dd>
+            <span>{{ atencionRef.hora }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.atencion.motivo_consulta">Motivo Consulta</span></dt>
+          <dd>
+            <span>{{ atencionRef.motivo_consulta }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.atencion.diagnostico">Diagnostico</span></dt>
+          <dd>
+            <span>{{ atencionRef.diagnostico }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.atencion.tratamiento">Tratamiento</span></dt>
+          <dd>
+            <span>{{ atencionRef.tratamiento }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.atencion.centroMedico">Centro Medico</span></dt>
+          <dd>
+            @if (atencion()!.centroMedico) {
+              <div>
+                <a [routerLink]="['/centro-medico', atencion()!.centroMedico?.id, 'view']">{{ atencionRef.centroMedico?.centro }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="sesametApp.atencion.doctor">Doctor</span></dt>
+          <dd>
+            @if (atencion()!.doctor) {
+              <div>
+                <a [routerLink]="['/doctor', atencion()!.doctor?.id, 'view']">{{ atencionRef.doctor?.rut_doctor }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="sesametApp.atencion.paciente">Paciente</span></dt>
+          <dd>
+            @if (atencion()!.paciente) {
+              <div>
+                <a [routerLink]="['/paciente', atencion()!.paciente?.id, 'view']">{{ atencionRef.paciente?.rut_paciente }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/atencion', atencionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

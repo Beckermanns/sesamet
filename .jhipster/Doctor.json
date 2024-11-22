@@ -1,0 +1,43 @@
+{
+  "annotations": {
+    "changelogDate": "20241121033732"
+  },
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "rut_doctor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apellido_paterno",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apellido_materno",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefono",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "correo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "especialidad",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Doctor",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

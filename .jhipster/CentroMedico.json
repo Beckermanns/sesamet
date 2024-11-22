@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20241121032839"
+  },
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "centro",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "region",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "comuna",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "CentroMedico",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

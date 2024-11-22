@@ -1,0 +1,174 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-atencion-heading" data-cy="AtencionCreateUpdateHeading" jhiTranslate="sesametApp.atencion.home.createOrEditLabel">
+        Crear o editar Atencion
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="sesametApp.atencion.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fecha" jhiTranslate="sesametApp.atencion.fecha">Fecha</label>
+          <div class="input-group">
+            <input
+              id="field_fecha"
+              data-cy="fecha"
+              type="text"
+              class="form-control"
+              name="fecha"
+              ngbDatepicker
+              #fechaDp="ngbDatepicker"
+              formControlName="fecha"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_hora" jhiTranslate="sesametApp.atencion.hora">Hora</label>
+          <input type="text" class="form-control" name="hora" id="field_hora" data-cy="hora" formControlName="hora" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_motivo_consulta" jhiTranslate="sesametApp.atencion.motivo_consulta">Motivo Consulta</label>
+          <input
+            type="text"
+            class="form-control"
+            name="motivo_consulta"
+            id="field_motivo_consulta"
+            data-cy="motivo_consulta"
+            formControlName="motivo_consulta"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_diagnostico" jhiTranslate="sesametApp.atencion.diagnostico">Diagnostico</label>
+          <input
+            type="text"
+            class="form-control"
+            name="diagnostico"
+            id="field_diagnostico"
+            data-cy="diagnostico"
+            formControlName="diagnostico"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tratamiento" jhiTranslate="sesametApp.atencion.tratamiento">Tratamiento</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tratamiento"
+            id="field_tratamiento"
+            data-cy="tratamiento"
+            formControlName="tratamiento"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_centroMedico" jhiTranslate="sesametApp.atencion.centroMedico">Centro Medico</label>
+          <select
+            class="form-control"
+            id="field_centroMedico"
+            data-cy="centroMedico"
+            name="centroMedico"
+            formControlName="centroMedico"
+            [compareWith]="compareCentroMedico"
+          >
+            @if (editForm.get(['centroMedico'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (centroMedicoOption of centroMedicosSharedCollection; track $index) {
+              <option [ngValue]="centroMedicoOption">{{ centroMedicoOption.centro }}</option>
+            }
+          </select>
+        </div>
+        @if (
+          editForm.get(['centroMedico'])!.invalid && (editForm.get(['centroMedico'])!.dirty || editForm.get(['centroMedico'])!.touched)
+        ) {
+          <div>
+            @if (editForm.get(['centroMedico'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_doctor" jhiTranslate="sesametApp.atencion.doctor">Doctor</label>
+          <select
+            class="form-control"
+            id="field_doctor"
+            data-cy="doctor"
+            name="doctor"
+            formControlName="doctor"
+            [compareWith]="compareDoctor"
+          >
+            @if (editForm.get(['doctor'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (doctorOption of doctorsSharedCollection; track $index) {
+              <option [ngValue]="doctorOption">{{ doctorOption.rut_doctor }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['doctor'])!.invalid && (editForm.get(['doctor'])!.dirty || editForm.get(['doctor'])!.touched)) {
+          <div>
+            @if (editForm.get(['doctor'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+            }
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_paciente" jhiTranslate="sesametApp.atencion.paciente">Paciente</label>
+          <select
+            class="form-control"
+            id="field_paciente"
+            data-cy="paciente"
+            name="paciente"
+            formControlName="paciente"
+            [compareWith]="comparePaciente"
+          >
+            @if (editForm.get(['paciente'])!.value == null) {
+              <option [ngValue]="null" selected></option>
+            }
+            @for (pacienteOption of pacientesSharedCollection; track $index) {
+              <option [ngValue]="pacienteOption">{{ pacienteOption.rut_paciente }}</option>
+            }
+          </select>
+        </div>
+        @if (editForm.get(['paciente'])!.invalid && (editForm.get(['paciente'])!.dirty || editForm.get(['paciente'])!.touched)) {
+          <div>
+            @if (editForm.get(['paciente'])?.errors?.required) {
+              <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+            }
+          </div>
+        }
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

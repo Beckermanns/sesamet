@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-centro-medico-heading"
+        data-cy="CentroMedicoCreateUpdateHeading"
+        jhiTranslate="sesametApp.centroMedico.home.createOrEditLabel"
+      >
+        Crear o editar Centro Medico
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="sesametApp.centroMedico.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_centro" jhiTranslate="sesametApp.centroMedico.centro">Centro</label>
+          <input type="text" class="form-control" name="centro" id="field_centro" data-cy="centro" formControlName="centro" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_region" jhiTranslate="sesametApp.centroMedico.region">Region</label>
+          <input type="text" class="form-control" name="region" id="field_region" data-cy="region" formControlName="region" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_comuna" jhiTranslate="sesametApp.centroMedico.comuna">Comuna</label>
+          <input type="text" class="form-control" name="comuna" id="field_comuna" data-cy="comuna" formControlName="comuna" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_direccion" jhiTranslate="sesametApp.centroMedico.direccion">Direccion</label>
+          <input type="text" class="form-control" name="direccion" id="field_direccion" data-cy="direccion" formControlName="direccion" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

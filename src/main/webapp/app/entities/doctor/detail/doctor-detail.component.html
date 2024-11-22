@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (doctor(); as doctorRef) {
+      <div>
+        <h2 data-cy="doctorDetailsHeading"><span jhiTranslate="sesametApp.doctor.detail.title">Doctor</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ doctorRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.doctor.rut_doctor">Rut Doctor</span></dt>
+          <dd>
+            <span>{{ doctorRef.rut_doctor }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.doctor.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ doctorRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.doctor.apellido_paterno">Apellido Paterno</span></dt>
+          <dd>
+            <span>{{ doctorRef.apellido_paterno }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.doctor.apellido_materno">Apellido Materno</span></dt>
+          <dd>
+            <span>{{ doctorRef.apellido_materno }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.doctor.telefono">Telefono</span></dt>
+          <dd>
+            <span>{{ doctorRef.telefono }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.doctor.correo">Correo</span></dt>
+          <dd>
+            <span>{{ doctorRef.correo }}</span>
+          </dd>
+          <dt><span jhiTranslate="sesametApp.doctor.especialidad">Especialidad</span></dt>
+          <dd>
+            <span>{{ doctorRef.especialidad }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/doctor', doctorRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
